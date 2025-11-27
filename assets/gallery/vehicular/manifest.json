@@ -1,0 +1,25 @@
+{
+  "category": "vehicular",
+  "generated": "2025-11-04T01:50:25.6596256-03:00",
+  "count": 3,
+  "items": [
+    {
+      "name": "726cf66e-8d46-4b60-a799-38b3c647a1d1",
+      "full": "/assets/gallery/vehicular/726cf66e-8d46-4b60-a799-38b3c647a1d1.jpeg",
+      "thumb": "/assets/gallery/vehicular/726cf66e-8d46-4b60-a799-38b3c647a1d1.jpeg",
+      "mtime": "2025-11-04T04:17:54.0572800Z"
+    },
+    {
+      "name": "c1cb6ff6-f2af-4d41-b225-d75aa744b6db",
+      "full": "/assets/gallery/vehicular/c1cb6ff6-f2af-4d41-b225-d75aa744b6db.jpeg",
+      "thumb": "/assets/gallery/vehicular/c1cb6ff6-f2af-4d41-b225-d75aa744b6db.jpeg",
+      "mtime": "2025-11-04T04:17:59.8753175Z"
+    },
+    {
+      "name": "e839611f-05a8-4bd1-9722-e85d58d0b2e9",
+      "full": "/assets/gallery/vehicular/e839611f-05a8-4bd1-9722-e85d58d0b2e9.jpeg",
+      "thumb": "/assets/gallery/vehicular/e839611f-05a8-4bd1-9722-e85d58d0b2e9.jpeg",
+      "mtime": "2025-11-04T04:18:05.5428604Z"
+    }
+  ]
+}

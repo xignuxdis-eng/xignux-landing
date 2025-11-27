@@ -1,0 +1,25 @@
+{
+  "category": "carteleria",
+  "generated": "2025-11-04T01:50:25.7259827-03:00",
+  "count": 3,
+  "items": [
+    {
+      "name": "39094009-9011-4c90-b505-c344aa85a9b7",
+      "full": "/assets/gallery/carteleria/39094009-9011-4c90-b505-c344aa85a9b7.jpeg",
+      "thumb": "/assets/gallery/carteleria/39094009-9011-4c90-b505-c344aa85a9b7.jpeg",
+      "mtime": "2025-11-04T04:18:21.1680244Z"
+    },
+    {
+      "name": "a157b8f5-a0d7-4229-8f15-1a3834bc3cdc",
+      "full": "/assets/gallery/carteleria/a157b8f5-a0d7-4229-8f15-1a3834bc3cdc.jpeg",
+      "thumb": "/assets/gallery/carteleria/a157b8f5-a0d7-4229-8f15-1a3834bc3cdc.jpeg",
+      "mtime": "2025-11-04T04:18:26.4752588Z"
+    },
+    {
+      "name": "bd86f5ed-02da-41ac-9d83-b9322732dec8",
+      "full": "/assets/gallery/carteleria/bd86f5ed-02da-41ac-9d83-b9322732dec8.jpeg",
+      "thumb": "/assets/gallery/carteleria/bd86f5ed-02da-41ac-9d83-b9322732dec8.jpeg",
+      "mtime": "2025-11-04T04:18:49.0874861Z"
+    }
+  ]
+}

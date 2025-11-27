@@ -1,16 +1,491 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LuXius</title>
-    <script type="module" crossorigin src="/assets/index-f39a3840.js"></script>
-    <link rel="stylesheet" href="/assets/index-511ad357.css">
-  </head>
-  <body>
-    <div id="root"></div>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+  <title>XignuX — Calidad Profesional</title>
+  <meta property="og:title" content="XignuX — Calidad Profesional"/>
+  <meta property="og:description" content="Gigantografías, gráfica vehicular, laminado líquido UV y cartelería comercial. Córdoba, Argentina."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="/assets/og-cover.jpg"/>
+  <meta name="theme-color" content="#0b0c10"/>
+  <meta name="description" content="XignuX: gigantografías, gráfica vehicular, laminado líquido UV y cartelería comercial. Powered by LuXius IA." />
+  <link rel="icon" href="/favicon.ico"/>
+  <style>
+    /* ========================
+       Configuración base
+       ======================== */
+    :root {
+      /* MODO CLARO (por defecto) */
+      --bg: #ffffff;
+      --bg-soft: #f6f7f9;
+      --fg: #ffffff; /* usado en brand-mark */
+      --card: #ffffff;
+      --muted: #475569; /* slate-600-ish */
+      --text: #0b1220;
+      --text-soft: #334155; /* slate-700 */
+      --ring: rgba(2, 6, 23, .10);
+      --c: #00b5e2; /* C */
+      --m: #ff007f; /* M */
+      --y: #ffd400; /* Y */
+      --k: #111111; /* K */
+      --grad-cmyk: linear-gradient(90deg, var(--c), var(--m), var(--y), var(--k));
+    }
+    html.dark {
+      /* MODO OSCURO (cuando html tiene class="dark") */
+      --bg: #0b0c10;
+      --bg-soft: #0f1117;
+      --fg: #0b0c10;
+      --card: #0f1117;
+      --muted: #94a3b8;
+      --text: #e5e7eb;
+      --text-soft: #cbd5e1;
+      --ring: rgba(148, 163, 184, .25);
+    }
+
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(0,181,226,.08), transparent 40%),
+                  radial-gradient(900px 500px at 110% -20%, rgba(255,0,127,.08), transparent 40%),
+                  radial-gradient(1000px 500px at 50% 120%, rgba(255,212,0,.08), transparent 40%),
+                  var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(1200px, 92vw); margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
+
+    /* ========================
+       Header
+       ======================== */
+    header {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: color-mix(in oklab, var(--bg), transparent 45%);
+      border-bottom: 1px solid color-mix(in srgb, var(--ring), transparent 60%);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: .9rem 0; flex-wrap: wrap; gap: .5rem; }
+    .brand { display:flex; align-items:center; gap:.5rem; font-weight:800; letter-spacing:.2px; font-size: clamp(0.9rem, 2.5vw, 1rem); }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 10px; position: relative; isolation: isolate;
+      background: var(--fg);
+      box-shadow: 0 1px 0 rgba(0,0,0,.3) inset, 0 0 0 1px rgba(0,0,0,.1);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .brand-mark::before, .brand-mark::after {
+      content:""; position:absolute; inset:0;
+      background: conic-gradient(from 0deg, var(--c), var(--m), var(--y), var(--k), var(--c));
+      mix-blend-mode: lighten; opacity:.9; filter: blur(6px);
+      animation: spin 8s linear infinite;
+    }
+    .brand strong { font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
+    .brand span { font-size: clamp(0.75rem, 2vw, 0.9rem); }
+    .nav-links { display:flex; align-items:center; gap:1rem; }
+    .nav-links a { opacity:.9; }
+    .nav-actions { display:flex; align-items:center; gap:.5rem; flex-shrink: 0; }
+
+    /* Dark mode toggle */
+    .toggle { border:1px solid color-mix(in srgb, var(--ring), transparent 40%); border-radius: 999px; padding:.45rem .6rem; display:flex; align-items:center; gap:.45rem; cursor:pointer; }
+    .toggle svg { width:18px; height:18px; }
+
+    /* Botones */
+    .btn-cmyk {
+      position: relative; display:inline-flex; align-items:center; justify-content:center;
+      padding: clamp(0.7rem, 2vw, 0.85rem) clamp(1rem, 3vw, 1.2rem); border-radius: 999px; font-weight: 700; letter-spacing:.2px;
+      background: linear-gradient(135deg, var(--c) 0%, var(--m) 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 30px -12px rgba(0, 181, 226, 0.4), 0 0 0 1px rgba(0, 181, 226, 0.2);
+      transition: transform .15s ease, box-shadow .2s ease, filter .15s ease;
+      isolation: isolate;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      white-space: nowrap;
+      border: none;
+    }
+    .btn-cmyk:hover { 
+      transform: translateY(-2px) scale(1.02); 
+      box-shadow: 0 16px 40px -12px rgba(0, 181, 226, 0.6), 0 0 0 1px rgba(0, 181, 226, 0.3);
+      filter: brightness(1.1);
+    }
+    .btn-ghost { 
+      background: transparent; 
+      color: var(--text); 
+      box-shadow: 0 10px 30px -12px var(--ring), 0 0 0 2px color-mix(in srgb, var(--c), transparent 40%);
+      border: 2px solid var(--c);
+    }
+    .btn-ghost:hover {
+      background: color-mix(in srgb, var(--c), transparent 90%);
+      border-color: var(--c);
+      box-shadow: 0 16px 40px -12px rgba(0, 181, 226, 0.4);
+    }
+
+    @keyframes spin { to { transform: rotate(1turn); } }
+
+    /* ========================
+       Hero
+       ======================== */
+    .hero { display:grid; grid-template-columns: .8fr 1.2fr; gap: clamp(1.5rem, 3vw, 3rem); align-items:center; padding: clamp(2rem, 5vw, 4rem) 0; }
+    .eyebrow { font-weight:700; font-size:.85rem; letter-spacing:.28em; text-transform: uppercase; opacity:.8; }
+    .title { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; margin:.35rem 0 1rem; font-weight: 900; }
+    .subtitle { font-size: clamp(1rem, 2.2vw, 1.15rem); color: var(--text-soft); max-width: 56ch; }
+    .cta-row { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.2rem; }
+
+    .hero-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 20px 60px -30px var(--ring), 0 0 0 1px color-mix(in srgb, var(--ring), transparent 35%); }
+    .hero-card .overlay { position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.35)); }
+
+    /* ========================
+       Servicios
+       ======================== */
+    .section { padding: clamp(2rem, 5vw, 4rem) 0; }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 1.1rem; }
+    .card {
+      grid-column: span 3;
+      border-radius: 18px; padding: 1.1rem; background: var(--card);
+      border: 1px solid color-mix(in srgb, var(--ring), transparent 55%);
+      box-shadow: 0 10px 30px -16px var(--ring);
+      display:flex; flex-direction:column; gap:.45rem;
+      transition: transform .15s ease, box-shadow .2s ease;
+    }
+    @media (max-width: 768px) {
+      .card { grid-column: span 12; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .card { grid-column: span 6; }
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 16px 44px -20px var(--ring); }
+    .card .badge { display:inline-flex; align-items:center; gap:.4rem; font-weight:700; font-size:.8rem; padding:.35rem .6rem; border-radius:999px; background: color-mix(in srgb, var(--ring), transparent 70%); }
+    .card h3 { margin:.35rem 0; font-size:1.05rem; }
+    .card p { margin:0; color: var(--text-soft); font-size:.95rem; }
+
+    /* ========================
+       CTA final + Footer
+       ======================== */
+    .cta {
+      border: 1px dashed color-mix(in srgb, var(--ring), transparent 40%);
+      border-radius: 18px; padding: 1.5rem; background:
+        radial-gradient(700px 200px at 20% 0%, rgba(0,181,226,.08), transparent 60%),
+        radial-gradient(700px 200px at 80% 100%, rgba(255,0,127,.08), transparent 60%),
+        color-mix(in srgb, var(--bg-soft), transparent 0%);
+      text-align:center;
+    }
+    footer { padding: 2rem 0; color: var(--muted); font-size:.95rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.75rem; }
+    .powered { display:flex; align-items:center; gap:.5rem; }
+    .powered i { width:10px; height:10px; border-radius: 999px; background: var(--grad-cmyk); display:inline-block; }
+    .social-links { display:flex; align-items:center; gap:1rem; }
+    .social-btn { display:inline-flex; align-items:center; gap:.65rem; padding:.85rem 1.5rem; border-radius:999px; transition: all .2s ease; font-weight:700; font-size:1.05rem; letter-spacing:.3px; box-shadow: 0 6px 20px -6px currentColor; border: none; }
+    .social-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 12px 30px -8px currentColor; }
+    .social-btn svg { width:24px; height:24px; flex-shrink:0; }
+    .social-btn.instagram { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #ffffff; }
+    .social-btn.whatsapp { background: #25D366; color: #ffffff; }
+
+    /* ========================
+       Galería + Logos
+       ======================== */
+    .gallery { display:grid; grid-template-columns: repeat(12, 1fr); gap: .9rem; }
+    .gallery a { grid-column: span 3; border-radius: 14px; overflow:hidden; position:relative; outline: none; }
+    .gallery img { width:100%; height:100%; object-fit:cover; aspect-ratio: 4/3; }
+    .lightbox { position: fixed; inset:0; background: rgba(0,0,0,.82); display:none; align-items:center; justify-content:center; z-index:60; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width: min(92vw, 1400px); max-height: 86vh; border-radius: 12px; box-shadow: 0 25px 80px -20px rgba(0,0,0,.6); }
+    .lightbox .close { position:absolute; top:18px; right:18px; background: #fff; border:none; border-radius:999px; padding:.45rem .6rem; cursor:pointer; box-shadow: 0 8px 22px rgba(0,0,0,.25); }
+    .lightbox .close:after { content:'✕'; font-weight:700; }
+
+    .logo-strip { display:grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; align-items:center; opacity:.85; }
+    .logo-strip img { grid-column: span 2; max-height: 34px; width:auto; margin:0 auto; filter: grayscale(100%) contrast(110%); opacity:.9; }
+    @media (max-width: 900px) { .gallery a { grid-column: span 6; } .logo-strip img{ grid-column: span 4; } }
+    @media (max-width: 480px) { 
+      .gallery a { grid-column: span 12; } 
+      .logo-strip img { grid-column: span 6; }
+    }
+
+    /* Utilidades */
+    .hide-on-mobile { display: none; }
+    @media (min-width: 900px) { .hide-on-mobile { display: inline-flex; } }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
     
-  </body>
+    /* Botón flotante de WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 8px 40px rgba(37, 211, 102, 0.3);
+      z-index: 999;
+      transition: all .3s ease;
+      cursor: pointer;
+      animation: pulse-whatsapp 2s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5), 0 12px 50px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: #ffffff;
+    }
+    @keyframes pulse-whatsapp {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 8px 40px rgba(37, 211, 102, 0.3); }
+      50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 8px 40px rgba(37, 211, 102, 0.5), 0 0 0 8px rgba(37, 211, 102, 0.1); }
+    }
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+      }
+      .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    /* Ajustes móviles generales */
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem; }
+      .nav { padding: 0.75rem 0; }
+      .section { padding: clamp(1.5rem, 4vw, 3rem) 0; }
+      .cta { padding: 1.2rem; }
+      footer { flex-direction: column; text-align: center; padding: 1.5rem 0; }
+      .brand span { display: none; }
+      .social-links { width: 100%; justify-content: center; flex-direction: column; gap: .75rem; }
+      .social-btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 0.75rem; }
+      .btn-cmyk { width: 100%; justify-content: center; }
+      .cta-row { flex-direction: column; }
+      .cta-row .btn-cmyk { width: 100%; }
+    }
+    .visually-hidden { position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0; clip:rect(0 0 0 0); overflow:hidden; white-space:nowrap; }
+  </style>
+  <script>
+    // Persistencia y toggle de tema (claro/oscuro)
+    (function() {
+      const labelEl = () => document.querySelector('.toggle-label');
+      const setLabel = () => {
+        const dark = document.documentElement.classList.contains('dark');
+        const el = labelEl();
+        if (el) el.textContent = dark ? 'Oscuro' : 'Claro';
+        const btn = document.querySelector('.toggle');
+        if (btn) btn.setAttribute('aria-pressed', String(dark));
+      };
+
+      const saved = localStorage.getItem('theme');
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      if (saved === 'dark' || (!saved && mql.matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      setLabel();
+
+      window.__toggleTheme = () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        setLabel();
+      };
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <a class="brand" href="#">
+        <!-- Logo real -->
+        <img id="logo-main" class="logo" src="/assets/logo-xignux.svg" alt="Logo XignuX" style="height:30px; width:auto; display:block; border-radius:6px; box-shadow:0 0 0 1px rgba(0,0,0,.08)">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <strong>XignuX</strong>
+        <span style="opacity:.7; font-weight:600;">· Graficamos Arte</span>
+      </a>
+      <div class="nav-links hide-on-mobile">
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="container hero" id="inicio">
+      <figure class="hero-card" aria-label="Muestra de gráfica vehicular y gigantografías">
+        <img id="hero-img" src="/assets/hero.jpg?v=2" alt="Composición con gráfica vehicular y gigantografías" />
+        <div class="overlay"></div>
+      </figure>
+      <div>
+        <div class="eyebrow">Impresión gran formato · Córdoba · Argentina</div>
+        <h1 class="title">Calidad Profesional</h1>
+        <p class="subtitle">Gigantografías, gráfica vehicular, laminado líquido UV y cartelería comercial. Producción cuidada de punta a punta y un panel de clientes con seguimiento en tiempo real, <strong>Powered by LuXius IA</strong>.</p>
+        <div class="cta-row">
+          <a class="btn-cmyk" href="/app/login">Ingresar al Panel</a>
+          <a class="btn-cmyk btn-ghost" href="#servicios">Ver Servicios</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section container">
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <span class="badge">🚘 Gráfica Vehicular</span>
+          <h3>Vinilos de alta performance</h3>
+          <p>Transformamos vehículos en piezas publicitarias impactantes con vinilos de máxima calidad y durabilidad. Realizamos rotulados parciales y full wrap con precisión milimétrica, cuidando cada detalle de la instalación para lograr acabados uniformes, curvas limpias y un sellado UV que protege el color y el brillo frente al sol, la lluvia y el paso del tiempo. Ideal para flotas comerciales, autos particulares y proyectos personalizados que buscan destacar con estilo profesional.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="badge">🖼️ Gigantografías</span>
+          <h3>Lonas, front y backlight</h3>
+          <p>Imprimimos en gran formato con fidelidad cromática y resolución precisa, utilizando perfiles ICC optimizados para nuestra tecnología de impresión. Ofrecemos opciones en lona frontlight, backlight y mesh microperforado, adaptadas a cada necesidad publicitaria. Garantizamos colores consistentes, materiales resistentes y acabados limpios que se mantienen perfectos incluso en exteriores de alta exposición.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="badge">✨ Laminado Líquido UV</span>
+          <h3>Protección y acabado profesional</h3>
+          <p>Aplicamos laminado líquido con tecnología UV para extender la vida útil de las impresiones y resaltar su brillo o acabado satinado. Este recubrimiento invisible actúa como barrera contra los rayos UV, la humedad y la abrasión, manteniendo los colores vivos y protegidos. Ideal para cartelería exterior, gráfica vehicular y trabajos que requieren máxima resistencia sin comprometer la estética.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="badge">🏪 Cartelería Comercial</span>
+          <h3>Señalética, vidrieras y locales</h3>
+          <p>Diseñamos y producimos carteles, banners y señalética interior o exterior con enfoque en visibilidad, durabilidad y estética. Ofrecemos soluciones integrales que van desde el diseño hasta la instalación profesional, con materiales como vinilos poliméricos, microperforados y lonas tensadas. Perfecto para negocios que buscan presencia visual sólida y una imagen moderna que refleje la identidad de su marca.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="section container" aria-label="Galería de trabajos">
+      <h2 style="margin:0 0 1rem">Trabajos recientes</h2>
+      <div class="gallery" role="list"></div>
+      <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada de imagen">
+        <button class="close" aria-label="Cerrar"></button>
+        <img id="lightbox-img" alt="Imagen ampliada">
+      </div>
+    </section>
+
+    <!-- LOGO STRIP -->
+    <section class="section container hidden" aria-label="Marcas y materiales compatibles" style="display: none;">
+      <div class="logo-strip">
+        <img src="/assets/brands/brand1.svg" alt="Marca 1" loading="lazy">
+        <img src="/assets/brands/brand2.svg" alt="Marca 2" loading="lazy">
+        <img src="/assets/brands/brand3.svg" alt="Marca 3" loading="lazy">
+        <img src="/assets/brands/brand4.svg" alt="Marca 4" loading="lazy">
+        <img src="/assets/brands/brand5.svg" alt="Marca 5" loading="lazy">
+        <img src="/assets/brands/brand6.svg" alt="Marca 6" loading="lazy">
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section container">
+      <div class="cta">
+        <h2 style="margin:0 0 .5rem; font-size:1.6rem">¿Listo para subir tus archivos?</h2>
+        <p style="margin:0 0 1rem; color:var(--text-soft)">Ingresá a tu panel LuXius y gestioná tus trabajos en minutos.</p>
+        <a class="btn-cmyk" href="/app/login">Cargar Archivos</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/5493518192655" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <footer class="container" id="contacto">
+    <div>© <span id="y"></span> XignuX · Córdoba, Argentina · <a href="mailto:contacto@xignux.com.ar" aria-label="Enviar correo a XignuX">contacto@xignux.com.ar</a></div>
+    <div class="social-links">
+      <a href="https://wa.me/5493518192655" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp" aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <a href="https://instagram.com/xignux_grafica" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Seguir en Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Instagram
+      </a>
+    </div>
+    <div class="powered"><i aria-hidden="true"></i> <span>Powered by <strong>LuXius IA</strong></span></div>
+  </footer>
+
+  <script>
+    // Año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Fallbacks de imagen sin inline onerror
+    (function() {
+      const logo = document.getElementById('logo-main');
+      if (logo) logo.addEventListener('error', function(){ this.style.display = "none"; }, { once:true });
+      const hero = document.getElementById('hero-img');
+      if (hero) {
+        // Forzar recarga de la imagen para evitar caché
+        const timestamp = new Date().getTime();
+        const currentSrc = hero.src.split('?')[0];
+        hero.src = currentSrc + '?v=' + timestamp;
+        const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%2300b5e2'/%3E%3Cstop offset='0.5' stop-color='%23ff007f'/%3E%3Cstop offset='1' stop-color='%23ffd400'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23101117' width='100%25' height='100%25'/%3E%3Crect x='0' y='0' width='100%25' height='60%25' fill='url(%23g)' opacity='0.25'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-family='Segoe UI, Roboto' font-size='42' text-anchor='middle'%3EPlaceholder Hero%3C/text%3E%3C/svg%3E";
+        hero.addEventListener('error', function(){ this.src = placeholder; }, { once:true });
+      }
+    })();
+  </script>
+  <script>
+    // Lightbox con delegación (funciona con ítems agregados dinámicamente)
+    (function(){
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const closeBtn = lb?.querySelector('.close');
+      const gallery = document.querySelector('.gallery');
+      if (gallery && lb && lbImg) {
+        gallery.addEventListener('click', (e) => {
+          const a = e.target.closest('a');
+          if (!a || !gallery.contains(a)) return;
+          e.preventDefault();
+          const href = a.getAttribute('href');
+          if (!href) return;
+          lbImg.src = href;
+          lb.classList.add('open');
+        });
+      }
+      closeBtn?.addEventListener('click', ()=> lb.classList.remove('open'));
+      lb?.addEventListener('click', (e)=>{ if(e.target === lb) lb.classList.remove('open'); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') lb.classList.remove('open'); });
+    })();
+  </script>
+  <script>
+  // Galería dinámica desde manifests JSON
+  (function(){
+    var CATEGORIES = ["vehicular","gigantografias","laminado","carteleria"];
+    var gallery = document.querySelector('.gallery');
+    if (!gallery) { gallery = document.createElement('div'); gallery.className = 'gallery'; document.body.appendChild(gallery); }
+    function loadCategory(cat){
+      fetch('/assets/gallery/' + cat + '/manifest.json?ts=' + Date.now())
+        .then(function(res){ if(!res.ok) return null; return res.json(); })
+        .then(function(man){
+          if(!man || !man.items) return;
+          man.items.forEach(function(it){
+            var a = document.createElement('a');
+            a.href = it.full; a.setAttribute('role','listitem');
+            var img = document.createElement('img');
+            img.loading = 'lazy'; img.src = it.thumb || it.full;
+            img.alt = (cat + ' ' + (it.name||'')).trim();
+            a.appendChild(img); gallery.appendChild(a);
+          });
+        }).catch(function(){});
+    }
+    CATEGORIES.reduce(function(p,c){ return p.then(function(){ loadCategory(c); return new Promise(function(r){ setTimeout(r,10); }); }); }, Promise.resolve());
+  })();
+  </script>
+</body>
 </html>

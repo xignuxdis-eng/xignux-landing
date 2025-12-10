@@ -1,0 +1,5 @@
+@media (prefers-color-scheme: dark) {
+  .hero-logo img {
+    filter: brightness(1.4) contrast(1.1);
+  }
+}

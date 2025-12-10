@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
@@ -11,6 +11,7 @@
   <meta name="theme-color" content="#0b0c10"/>
   <meta name="description" content="XignuX: gigantografías, gráfica vehicular, laminado líquido UV y cartelería comercial. Powered by LuXius IA." />
   <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     /* ========================
        Configuración base
@@ -459,6 +460,9 @@
         }
     }
 
+    /* Mejora la visibilidad del logo en modo oscuro */
+    /* Regla movida a assets/css/style.css */
+
     /* Utilidades */
     .hide-on-mobile { display: none; }
     @media (min-width: 900px) { .hide-on-mobile { display: inline-flex; } }
@@ -508,16 +512,56 @@
       }
     }
 
+    /* Logo en modo oscuro: fondo neutro para mejor contraste */
+    html.dark .brand img.logo {
+      background-color: #f8fafc; /* gris claro */
+      padding: 4px;
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
     /* Ajustes móviles generales */
     @media (max-width: 768px) {
       .container { padding: 0 1rem; }
-      .nav { padding: 0.75rem 0; }
+      .nav { padding: 0.4rem 0; } /* REDUCIDO aún más: header más delgado en móvil */
       .section { padding: clamp(1.5rem, 4vw, 3rem) 0; }
       .cta { padding: 1.2rem; }
       footer { flex-direction: column; text-align: center; padding: 1.5rem 0; }
       .brand span { display: none; }
       .social-links { width: 100%; justify-content: center; flex-direction: column; gap: .75rem; }
       .social-btn { width: 100%; max-width: 280px; justify-content: center; }
+      /* Ajuste del logo en móvil para mantener proporción */
+      .brand img.logo {
+        height: 24px; /* Logo más pequeño en móvil */
+        width: auto;
+        border-radius: 4px;
+      }
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+      }
+      .brand {
+        gap: 0.4rem;
+      }
+      /* Ajuste del logo en modo oscuro para móviles */
+      html.dark .brand img.logo {
+        padding: 3px;
+        border-radius: 6px;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav { padding: 0.3rem 0; }
+      .brand img.logo {
+        height: 22px;
+      }
+      .brand-mark {
+        width: 24px;
+        height: 24px;
+      }
+      html.dark .brand img.logo {
+        padding: 2px;
+        border-radius: 5px;
+      }
     }
     @media (max-width: 480px) {
       .container { padding: 0 0.75rem; }
@@ -528,7 +572,7 @@
     .visually-hidden { position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0; clip:rect(0 0 0 0); overflow:hidden; white-space:nowrap; }
   </style>
   <script>
-    // Persistencia y toggle de tema (claro/oscuro)
+    // Persistencia y toggle de tema (claro/oscuro) + cambio de logo
     (function() {
       const labelEl = () => document.querySelector('.toggle-label');
       const setLabel = () => {
@@ -539,6 +583,17 @@
         if (btn) btn.setAttribute('aria-pressed', String(dark));
       };
 
+      // Función para actualizar el logo según el tema
+      const updateLogo = () => {
+        const logo = document.getElementById('logo-main');
+        if (!logo) return;
+        const isDark = document.documentElement.classList.contains('dark');
+        // Ruta del logo claro (original) y logo oscuro
+        const lightLogo = '/assets/logo-xignux.svg';
+        const darkLogo = '/app/images/logo/logo-dark.svg';
+        logo.src = isDark ? darkLogo : lightLogo;
+      };
+
       const saved = localStorage.getItem('theme');
       const mql = window.matchMedia('(prefers-color-scheme: dark)');
       if (saved === 'dark' || (!saved && mql.matches)) {
@@ -547,17 +602,32 @@
         document.documentElement.classList.remove('dark');
       }
       setLabel();
+      updateLogo(); // Aplicar logo correcto al cargar
 
       window.__toggleTheme = () => {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         setLabel();
+        updateLogo(); // Cambiar logo al togglear
       };
+
+      // Escuchar cambios en prefers-color-scheme (si el usuario cambia tema del sistema)
+      mql.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          if (e.matches) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          setLabel();
+          updateLogo();
+        }
+      });
     })();
   </script>
 </head>
 <body>
-  <header class="header-tech">
+  <header class="navbar navbar-expand-lg fixed-top shadow-sm" style="height: 70px; padding: 0.4rem 0; background-color: var(--bs-body-bg); z-index: 1000;">
     <div class="header-container">
       <nav class="header-nav">
         <a href="#servicios">Servicios</a>
@@ -831,6 +901,34 @@
     // Renderizar galería inicial
     renderGallery();
   })();
+    // Prevenir scroll automático al cargar la página
+    (function() {
+      // Eliminar cualquier hash de la URL sin hacer scroll
+      if (window.location.hash) {
+        window.history.replaceState(null, null, ' ');
+      }
+      // Asegurar que la página comience en el top
+      window.addEventListener('load', function() {
+        // Forzar scroll al inicio inmediatamente
+        window.scrollTo(0, 0);
+        // Un segundo timeout por si acaso algún script intenta hacer scroll después
+        setTimeout(function() {
+          if (window.scrollY !== 0) {
+            window.scrollTo(0, 0);
+          }
+        }, 100);
+      });
+      // También forzar scroll al inicio si el DOM ya está listo
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        window.scrollTo(0, 0);
+      }
+    })();
+  </script>
+  <script>
+    // Evita que la página haga scroll automático a la galería
+    window.onload = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
   </script>
 </body>
 </html>

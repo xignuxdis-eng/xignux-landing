@@ -70,10 +70,15 @@
       overflow-x: hidden;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(0, 181, 226, .08), transparent 40%),
-        radial-gradient(900px 500px at 110% -20%, rgba(255, 0, 127, .08), transparent 40%),
-        radial-gradient(1000px 500px at 50% 120%, rgba(255, 212, 0, .08), transparent 40%),
+      /* CMYK Ink Background Animation */
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 174, 239, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(236, 0, 140, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255, 242, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.02) 0%, transparent 40%),
         var(--bg);
+      background-size: 200% 200%;
+      animation: ink-flow 20s ease-in-out infinite alternate;
     }
 
     a {

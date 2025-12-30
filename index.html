@@ -1168,6 +1168,17 @@
         'assets/gallery/vehicular/e839611f-05a8-4bd1-9722-e85d58d0b2e9.jpeg'
       ];
 
+      // Función para mezclar (shuffle) el array aleatoriamente
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      // Mezclar las imágenes al cargar la página
+      shuffleArray(imagePaths);
+
       // Variables de paginación
       let currentPage = 1;
       const itemsPerPage = 8;

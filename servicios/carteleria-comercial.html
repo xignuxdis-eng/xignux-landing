@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    <title>Cartelería Comercial — XignuX</title>
+    <meta property="og:title" content="Cartelería Comercial — XignuX" />
+    <meta property="og:description"
+        content="Diseño, fabricación y montaje de cartelería. Corpóreos, señalética y marquesinas para negocios." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/og-cover.jpg" />
+    <meta name="theme-color" content="#0b0c10" />
+    <meta name="description"
+        content="Cartelería integral para locales comerciales. Letras corpóreas, cajas de luz y señalética en Córdoba." />
+    <link rel="icon" href="../favicon.ico" />
+    <style>
+        /* ========================
+       Configuración base
+       ======================== */
+        :root {
+            /* MODO CLARO (por defecto) */
+            --bg: #ffffff;
+            --bg-soft: #f6f7f9;
+            --fg: #ffffff;
+            /* usado en brand-mark */
+            --card: #ffffff;
+            --muted: #475569;
+            /* slate-600-ish */
+            --text: #0b1220;
+            --text-soft: #334155;
+            /* slate-700 */
+            --ring: rgba(2, 6, 23, .10);
+            --c: #00b5e2;
+            /* C */
+            --m: #ff007f;
+            /* M */
+            --y: #ffd400;
+            /* Y */
+            --k: #111111;
+            /* K */
+            --grad-cmyk: linear-gradient(90deg, var(--c), var(--m), var(--y), var(--k));
+            --font-primary: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        }
+
+        html.dark {
+            /* MODO OSCURO (cuando html tiene class="dark") */
+            --bg: #0b0c10;
+            --bg-soft: #0f1117;
+            --fg: #0b0c10;
+            --card: #0f1117;
+            --muted: #94a3b8;
+            --text: #e5e7eb;
+            --text-soft: #cbd5e1;
+            --ring: rgba(148, 163, 184, .25);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            /* CMYK Ink Background Animation */
+            background:
+                radial-gradient(circle at 0% 0%, rgba(0, 174, 239, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 0%, rgba(236, 0, 140, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(255, 242, 0, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.02) 0%, transparent 40%),
+                var(--bg);
+            background-size: 200% 200%;
+            animation: ink-flow 20s ease-in-out infinite alternate;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1200px, 92vw);
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 4vw, 2rem);
+        }
+
+        /* ========================
+       Header Tech LuXius IA
+       ======================== */
+        .header-tech {
+            width: 100%;
+            background: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.03);
+            /* CMYK Ink Background */
+            background:
+                radial-gradient(circle at 0% 0%, rgba(0, 174, 239, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(236, 0, 140, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(255, 242, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+                #ffffff;
+            background-size: 200% 200%;
+            animation: ink-flow 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes ink-flow {
+            0% {
+                background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%;
+            }
+
+            25% {
+                background-position: 100% 0%, 100% 100%, 0% 100%, 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%, 0% 100%, 0% 0%, 100% 0%;
+            }
+
+            75% {
+                background-position: 0% 100%, 0% 0%, 100% 0%, 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%;
+            }
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 18px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-logo img {
+            height: 42px;
+            filter: brightness(0) contrast(1.3);
+            opacity: 0.9;
+            transition: 0.2s ease;
+        }
+
+        .header-logo img:hover {
+            transform: scale(1.04);
+            opacity: 1;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            font-size: 18px;
+            color: #222;
+            opacity: 0.85;
+            font-weight: 800;
+            font-family: inherit;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .header-nav a:hover {
+            opacity: 1;
+            color: #0078ff;
+            transform: translateY(-1px);
+        }
+
+        .header-btn {
+            padding: 10px 22px;
+            border-radius: 10px;
+            border: 1.6px solid #0078ff;
+            color: #0078ff !important;
+            font-weight: 800;
+            font-family: inherit;
+            font-size: 18px;
+            transition: 0.25s ease;
+        }
+
+        .header-btn:hover {
+            background: #0078ff;
+            color: white !important;
+            box-shadow: 0px 4px 14px rgba(0, 120, 255, 0.35);
+        }
+
+        .header-glow-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                    rgba(0, 120, 255, 0) 0%,
+                    rgba(0, 120, 255, 0.65) 50%,
+                    rgba(0, 120, 255, 0) 100%);
+            box-shadow: 0px 0px 12px rgba(0, 120, 255, 0.4);
+        }
+
+        /* Header Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 10px 16px;
+            }
+
+            .header-logo img {
+                height: 32px;
+            }
+
+            .header-nav {
+                gap: 12px;
+            }
+
+            .header-nav a {
+                font-size: 14px;
+            }
+
+            .header-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+                border-width: 1.5px;
+            }
+        }
+
+        /* Dark mode toggle */
+        .toggle {
+            border: 1px solid color-mix(in srgb, var(--ring), transparent 40%);
+            border-radius: 999px;
+            padding: .45rem .6rem;
+            display: flex;
+            align-items: center;
+            gap: .45rem;
+            cursor: pointer;
+        }
+
+        .toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Botones */
+        .btn-cmyk {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.7rem, 2vw, 0.85rem) clamp(1rem, 3vw, 1.2rem);
+            border-radius: 999px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            background: linear-gradient(135deg, var(--c) 0%, var(--m) 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 30px -12px rgba(0, 181, 226, 0.4), 0 0 0 1px rgba(0, 181, 226, 0.2);
+            transition: transform .15s ease, box-shadow .2s ease, filter .15s ease;
+            isolation: isolate;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            white-space: nowrap;
+            border: none;
+        }
+
+        .btn-cmyk:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 16px 40px -12px rgba(0, 181, 226, 0.6), 0 0 0 1px rgba(0, 181, 226, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            box-shadow: 0 10px 30px -12px var(--ring), 0 0 0 2px color-mix(in srgb, var(--c), transparent 40%);
+            border: 2px solid var(--c);
+        }
+
+        .btn-ghost:hover {
+            background: color-mix(in srgb, var(--c), transparent 90%);
+            border-color: var(--c);
+            box-shadow: 0 16px 40px -12px rgba(0, 181, 226, 0.4);
+        }
+
+        /* ========================
+       Hero
+       ======================== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            align-items: center;
+            padding: clamp(6rem, 8vw, 6rem) 0 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font-weight: 700;
+            font-size: .85rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            opacity: .8;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.05;
+            margin: .35rem 0 1rem;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            color: var(--text-soft);
+            max-width: 65ch;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 2rem 0 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            color: var(--text-soft);
+            font-size: 1.1rem;
+        }
+
+        /* ========================
+       Galería
+       ======================== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            padding: 40px 0;
+        }
+
+        .gallery a {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            outline: none;
+            transition: transform 0.25s ease;
+            cursor: zoom-in;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+            border-radius: 16px;
+            transition: transform 0.25s ease;
+        }
+
+        .gallery a:hover img {
+            transform: scale(1.03);
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .82);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: min(92vw, 1400px);
+            max-height: 86vh;
+            border-radius: 12px;
+            box-shadow: 0 25px 80px -20px rgba(0, 0, 0, .6);
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: .45rem .6rem;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, .25);
+        }
+
+        .lightbox .close:after {
+            content: '✕';
+            font-weight: 700;
+        }
+
+        /* Paginación */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            color: var(--muted);
+            font-size: .95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: .75rem;
+        }
+
+        .powered {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .powered i {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--grad-cmyk);
+            display: inline-block;
+        }
+
+        /* Botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 8px 40px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: all .3s ease;
+            cursor: pointer;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 6px 30px rgba(37, 211, 102, 0.5), 0 12px 50px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: #ffffff;
+        }
+
+        @keyframes pulse-whatsapp {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 8px 40px rgba(37, 211, 102, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 8px 40px rgba(37, 211, 102, 0.5), 0 0 0 8px rgba(37, 211, 102, 0.1);
+            }
+        }
+    </style>
+    <script>
+        // Persistencia y toggle de tema (claro/oscuro)
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            if (saved === 'dark' || (!saved && mql.matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <header class="header-tech">
+        <div class="header-container">
+            <a href="../index.html" class="header-logo">
+                <img src="../assets/img/logo-xignux-hero.png" alt="XignuX" />
+            </a>
+            <nav class="header-nav">
+                <a href="../index.html#servicios">Servicios</a>
+                <a href="../index.html#contacto">Contacto</a>
+                <a href="/panel" class="header-btn">Ingresar al Panel</a>
+            </nav>
+        </div>
+        <div class="header-glow-line"></div>
+    </header>
+
+    <main>
+        <!-- HERO DE SERVICIO -->
+        <section class="container hero">
+            <div class="hero-content">
+                <span class="eyebrow">🏢 Cartelería Comercial</span>
+                <h1 class="title">Identidad Visual para tu Negocio</h1>
+                <p class="subtitle">Soluciones integrales en cartelería, señalética y corpóreos para destacar su marca.
+                </p>
+                <div class="cta-row" style="justify-content: center; margin-top: 2rem;">
+                    <a class="btn-cmyk" href="https://wa.me/5493518192655">Consultar Presupuesto</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESCRIPCIÓN DETALLADA -->
+        <section class="container content-section">
+            <p>Diseñamos y fabricamos cartelería comercial de alto impacto que fortalece la identidad de su negocio.
+                Desde letras corpóreas con iluminación LED y cajas de luz, hasta señalética interna y cartelería de
+                seguridad.</p>
+            <p>Trabajamos con materiales duraderos como acrílico, PVC, metal y vinilo, asegurando acabados prolijos y
+                resistentes a la intemperie. Nuestro equipo se encarga de todo el proceso, desde el diseño y la
+                producción hasta la instalación final en su local.</p>
+            <p>Una buena cartelería no solo identifica su local, sino que vende por usted las 24 horas. Destaque frente
+                a la competencia con una fachada moderna y profesional.</p>
+        </section>
+
+        <!-- GALERÍA ESPECÍFICA -->
+        <section id="galeria" class="section container" aria-label="Galería de cartelería">
+            <h2 style="margin:0 0 2rem; text-align: center;">Trabajos Realizados</h2>
+            <div class="gallery" role="list">
+                <!-- Las imágenes se cargarán dinámicamente -->
+            </div>
+            <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada de imagen">
+                <button class="close" aria-label="Cerrar"></button>
+                <img id="lightbox-img" alt="Imagen ampliada">
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="section container">
+            <div class="cta">
+                <h2 style="margin:0 0 .5rem; font-size:1.6rem">Destacá tu marca</h2>
+                <p style="margin:0 0 1rem; color:var(--text-soft)">Cotizá tu cartelería hoy mismo.</p>
+                <a class="btn-cmyk" href="https://wa.me/5493518192655">Contactar por WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botón flotante -->
+    <a href="https://wa.me/5493518192655" target="_blank" rel="noopener noreferrer" class="whatsapp-float"
+        aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <footer class="container">
+        <div>© <span id="y"></span> XignuX · Córdoba, Argentina · <a
+                href="mailto:contacto@xignux.com.ar">contacto@xignux.com.ar</a></div>
+        <div class="powered"><i aria-hidden="true"></i> <span>Powered by <strong>LuXius IA</strong></span></div>
+    </footer>
+
+    <script>
+        document.getElementById('y').textContent = new Date().getFullYear();
+    </script>
+    <script>
+        // Lightbox
+        (function () {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const closeBtn = lb?.querySelector('.close');
+            const gallery = document.querySelector('.gallery');
+            if (gallery && lb && lbImg) {
+                gallery.addEventListener('click', (e) => {
+                    const a = e.target.closest('a');
+                    if (!a || !gallery.contains(a)) return;
+                    e.preventDefault();
+                    const href = a.getAttribute('href');
+                    if (!href) return;
+                    lbImg.src = href;
+                    lb.classList.add('open');
+                });
+            }
+            closeBtn?.addEventListener('click', () => lb.classList.remove('open'));
+            lb?.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('open'); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('open'); });
+        })();
+    </script>
+    <script>
+        // Galería
+        (function () {
+            const imagePaths = [
+                '../assets/gallery/carteleria/39094009-9011-4c90-b505-c344aa85a9b7.jpeg',
+                '../assets/gallery/carteleria/a157b8f5-a0d7-4229-8f15-1a3834bc3cdc.jpeg',
+                '../assets/gallery/carteleria/bd86f5ed-02da-41ac-9d83-b9322732dec8.jpeg'
+            ];
+
+            const gallery = document.querySelector('.gallery');
+            if (!gallery) return;
+
+            imagePaths.forEach((imgPath) => {
+                const a = document.createElement('a');
+                a.href = imgPath;
+                a.setAttribute('role', 'listitem');
+
+                const img = document.createElement('img');
+                img.src = imgPath;
+                img.alt = "Trabajo Cartelería XignuX";
+                img.loading = 'lazy';
+
+                a.appendChild(img);
+                gallery.appendChild(a);
+            });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1125,7 +1125,7 @@
       }
 
       // Función para renderizar la galería
-      function renderGallery() {
+      function renderGallery(scroll = false) {
         if (!gallery) return;
 
         // Limpiar galería
@@ -1162,9 +1162,9 @@
           nextButton.disabled = currentPage === totalPages;
         }
 
-        // Scroll suave hacia la galería
+        // Scroll suave hacia la galería (solo si se solicita)
         const galeriaSection = document.querySelector('#galeria');
-        if (galeriaSection) {
+        if (scroll && galeriaSection) {
           galeriaSection.scrollIntoView();
         }
       }
@@ -1173,14 +1173,14 @@
       function nextPage() {
         if (currentPage < totalPages) {
           currentPage++;
-          renderGallery();
+          renderGallery(true);
         }
       }
 
       function prevPage() {
         if (currentPage > 1) {
           currentPage--;
-          renderGallery();
+          renderGallery(true);
         }
       }
 

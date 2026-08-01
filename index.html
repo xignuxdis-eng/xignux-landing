@@ -1267,6 +1267,18 @@
       // Renderizar galería inicial
       renderGallery();
     })();
+
+    // Redirección inteligente para botones de ingreso al panel en modo local o servidor
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href="/login"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          if (window.location.protocol === 'file:') {
+            e.preventDefault();
+            window.location.href = 'http://localhost:3005/login';
+          }
+        });
+      });
+    });
   </script>
 </body>
 

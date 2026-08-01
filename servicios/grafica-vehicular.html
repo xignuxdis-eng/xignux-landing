@@ -644,6 +644,17 @@
                 gallery.appendChild(a);
             });
         })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a[href="/login"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (window.location.protocol === 'file:') {
+                        e.preventDefault();
+                        window.location.href = 'http://localhost:3005/login';
+                    }
+                });
+            });
+        });
     </script>
 </body>
 

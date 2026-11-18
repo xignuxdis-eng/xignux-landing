@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xignuxdis-eng.github.io/xignux-landing/sitemap.xml

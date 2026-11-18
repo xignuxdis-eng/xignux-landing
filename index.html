@@ -16,7 +16,9 @@
   <link rel="icon" href="assets/logo-xignux.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <style>
     /* ========================
        Configuración base
@@ -803,8 +805,13 @@
       box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
     }
 
-    .lightbox .nav-btn.prev { left: 18px; }
-    .lightbox .nav-btn.next { right: 18px; }
+    .lightbox .nav-btn.prev {
+      left: 18px;
+    }
+
+    .lightbox .nav-btn.next {
+      right: 18px;
+    }
 
     @media (max-width: 900px) {
       .logo-strip img {
@@ -1037,14 +1044,23 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      body, .header-tech, .whatsapp-float {
+
+      body,
+      .header-tech,
+      .whatsapp-float {
         animation: none;
       }
+
       * {
         scroll-behavior: auto;
       }
     }
-    h1, h2, h3, .title, .header-btn {
+
+    h1,
+    h2,
+    h3,
+    .title,
+    .header-btn {
       font-family: var(--font-display);
       letter-spacing: -0.02em;
     }
@@ -1086,7 +1102,8 @@
         <a href="#servicios">Servicios</a>
         <a href="#contacto">Contacto</a>
         <a href="https://xignuxdis-eng.github.io/luxius-panel/" class="header-btn">Ingresar al Panel</a>
-        <button type="button" class="toggle" onclick="window.__toggleTheme()" aria-label="Cambiar tema claro u oscuro" aria-pressed="false">
+        <button type="button" class="toggle" onclick="window.__toggleTheme()" aria-label="Cambiar tema claro u oscuro"
+          aria-pressed="false">
           <span aria-hidden="true">◐</span>
           <span class="toggle-label">Claro</span>
         </button>
@@ -1104,7 +1121,8 @@
       </div>
       <div>
         <h1 class="title">Calidad Profesional</h1>
-        <p class="subtitle">Impresión gran formato en Córdoba, Argentina: gigantografías, gráfica vehicular, laminado líquido UV y cartelería comercial. Producción
+        <p class="subtitle">Impresión gran formato en Córdoba, Argentina: gigantografías, gráfica vehicular, laminado
+          líquido UV y cartelería comercial. Producción
           cuidada de punta a punta y un panel de clientes con seguimiento en tiempo real, <strong>Powered by LuXius
             IA</strong>.</p>
         <div class="cta-row">
@@ -1121,25 +1139,29 @@
         <a href="servicios/grafica-vehicular.html" class="service-card" role="listitem">
           <span class="badge">🚘 Gráfica Vehicular</span>
           <h3 class="service-card-title">Vinilos de alta performance</h3>
-          <p class="service-card-subtitle">Rotulado parcial y full wrap para flotas y vehículos con vinilos de alta durabilidad y sellado UV.</p>
+          <p class="service-card-subtitle">Rotulado parcial y full wrap para flotas y vehículos con vinilos de alta
+            durabilidad y sellado UV.</p>
           <span class="service-card-action">Ver más</span>
         </a>
         <a href="servicios/gigantografias.html" class="service-card" role="listitem">
           <span class="badge">🖼️ Gigantografías</span>
           <h3 class="service-card-title">Lonas, front y backlight</h3>
-          <p class="service-card-subtitle">Impresión gran formato con perfiles ICC calibrados en lona frontlight, backlight y mesh microperforado.</p>
+          <p class="service-card-subtitle">Impresión gran formato con perfiles ICC calibrados en lona frontlight,
+            backlight y mesh microperforado.</p>
           <span class="service-card-action">Ver más</span>
         </a>
         <a href="servicios/laminado-uv.html" class="service-card" role="listitem">
           <span class="badge">✨ Laminado Líquido UV</span>
           <h3 class="service-card-title">Protección y acabado profesional</h3>
-          <p class="service-card-subtitle">Recubrimiento UV brillante o satinado que protege impresiones y vehículos contra sol, humedad y roce.</p>
+          <p class="service-card-subtitle">Recubrimiento UV brillante o satinado que protege impresiones y vehículos
+            contra sol, humedad y roce.</p>
           <span class="service-card-action">Ver más</span>
         </a>
         <a href="servicios/carteleria-comercial.html" class="service-card" role="listitem">
           <span class="badge">🏪 Cartelería Comercial</span>
           <h3 class="service-card-title">Señalética, vidrieras y locales</h3>
-          <p class="service-card-subtitle">Diseño, producción e instalación de carteles, vidrieras y señalética en vinilo, PVC y lona tensada.</p>
+          <p class="service-card-subtitle">Diseño, producción e instalación de carteles, vidrieras y señalética en
+            vinilo, PVC y lona tensada.</p>
           <span class="service-card-action">Ver más</span>
         </a>
       </div>
@@ -1151,7 +1173,8 @@
       <div class="gallery-filters" role="group" aria-label="Filtrar trabajos por categoría">
         <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">Todos</button>
         <button type="button" class="filter-btn" data-filter="carteleria" aria-pressed="false">Cartelería</button>
-        <button type="button" class="filter-btn" data-filter="gigantografias" aria-pressed="false">Gigantografías</button>
+        <button type="button" class="filter-btn" data-filter="gigantografias"
+          aria-pressed="false">Gigantografías</button>
         <button type="button" class="filter-btn" data-filter="laminado" aria-pressed="false">Laminado UV</button>
         <button type="button" class="filter-btn" data-filter="vehicular" aria-pressed="false">Gráfica vehicular</button>
       </div>
@@ -1166,7 +1189,8 @@
       <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada de imagen">
         <button class="close" type="button" aria-label="Cerrar"></button>
         <button class="nav-btn prev" type="button" aria-label="Imagen anterior">&#8249;</button>
-        <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Imagen ampliada">
+        <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          alt="Imagen ampliada">
         <button class="nav-btn next" type="button" aria-label="Imagen siguiente">&#8250;</button>
       </div>
     </section>

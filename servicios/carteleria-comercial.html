@@ -554,8 +554,7 @@
         // Persistencia y toggle de tema (claro/oscuro)
         (function () {
             const saved = localStorage.getItem('theme');
-            const mql = window.matchMedia('(prefers-color-scheme: dark)');
-            if (saved === 'dark' || (!saved && mql.matches)) {
+            if (saved === 'dark') {
                 document.documentElement.classList.add('dark');
             } else {
                 document.documentElement.classList.remove('dark');

@@ -123,6 +123,15 @@
       animation: ink-flow 15s ease-in-out infinite alternate;
     }
 
+    html.dark .header-tech {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 174, 239, 0.10) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(236, 0, 140, 0.10) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(255, 242, 0, 0.06) 0%, transparent 50%),
+        #0b0c10;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
     @keyframes ink-flow {
       0% {
         background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%;
@@ -494,14 +503,14 @@
     .service-card-action {
       margin-top: 12px;
       font-weight: 600;
-      color: #0077ff;
+      color: #0056b3;
       text-decoration: underline;
       display: inline-block;
     }
 
     /* Modo oscuro */
     html.dark .service-card {
-      background: rgba(15, 17, 23, 0.7);
+      background: rgba(15, 17, 23, 0.78);
     }
 
     html.dark .service-card-title {
@@ -509,11 +518,11 @@
     }
 
     html.dark .service-card-subtitle {
-      color: #aaa;
+      color: #cbd5e1;
     }
 
     html.dark .service-card-action {
-      color: #3399ff;
+      color: #60a5fa;
     }
 
     /* Responsive */
@@ -534,15 +543,6 @@
       .service-card {
         grid-column: span 6;
       }
-    }
-
-    /* Ajustes para modo oscuro */
-    html.dark .service-card-title {
-      color: #f0f0f0;
-    }
-
-    html.dark .service-card-subtitle {
-      color: #aaa;
     }
 
     /* ========================
@@ -711,19 +711,63 @@
       opacity: .9;
     }
 
-    @media (max-width: 900px) {
-      .gallery a {
-        grid-column: span 6;
-      }
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.25rem 0 0.5rem;
+    }
 
+    .filter-btn {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--ring);
+      background: var(--card);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: #0056b3;
+    }
+
+    .filter-btn[aria-pressed="true"] {
+      background: #0056b3;
+      color: #ffffff;
+      border-color: #0056b3;
+    }
+
+    .lightbox .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ffffff;
+      color: #0b1220;
+      border: none;
+      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
+    }
+
+    .lightbox .nav-btn.prev { left: 18px; }
+    .lightbox .nav-btn.next { right: 18px; }
+
+    @media (max-width: 900px) {
       .logo-strip img {
         grid-column: span 4;
       }
     }
 
     @media (max-width: 480px) {
-      .gallery a {
-        grid-column: span 12;
+      .gallery {
+        grid-template-columns: 1fr;
       }
 
       .logo-strip img {
@@ -743,19 +787,27 @@
     .pagination button {
       padding: 10px 18px;
       border-radius: 8px;
-      background: white;
-      border: 1px solid #ccc;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--ring);
+      font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
     }
 
-    .pagination button:hover {
-      background: #f0f0f0;
+    .pagination button:hover:not(:disabled) {
+      background: var(--bg-soft);
+      border-color: #0056b3;
+    }
+
+    .pagination button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
     }
 
     /* Hero Logo */
     .hero-logo-container {
-      background: rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-radius: 20px;
@@ -770,6 +822,10 @@
       margin-bottom: 20px;
       display: flex;
       justify-content: center;
+    }
+
+    html.dark .hero-logo-container {
+      background: rgba(15, 17, 23, 0.82);
     }
 
     .hero-logo {
@@ -1011,44 +1067,28 @@
     <section id="servicios" class="section container">
       <h2 style="margin:0 0 1.25rem">Nuestros servicios</h2>
       <div class="grid" role="list">
-        <a href="/servicios/grafica-vehicular.html" class="service-card" role="listitem">
+        <a href="servicios/grafica-vehicular.html" class="service-card" role="listitem">
           <span class="badge">🚘 Gráfica Vehicular</span>
           <h3 class="service-card-title">Vinilos de alta performance</h3>
-          <p class="service-card-subtitle">Transformamos vehículos en piezas publicitarias impactantes con vinilos de
-            máxima calidad y durabilidad. Realizamos rotulados parciales y full wrap con precisión milimétrica, cuidando
-            cada detalle de la instalación para lograr acabados uniformes, curvas limpias y un sellado UV que protege el
-            color y el brillo frente al sol, la lluvia y el paso del tiempo. Ideal para flotas comerciales, autos
-            particulares y proyectos personalizados que buscan destacar con estilo profesional.</p>
+          <p class="service-card-subtitle">Rotulado parcial y full wrap para flotas y vehículos con vinilos de alta durabilidad y sellado UV.</p>
           <span class="service-card-action">Ver más</span>
         </a>
-        <a href="/servicios/gigantografias.html" class="service-card" role="listitem">
+        <a href="servicios/gigantografias.html" class="service-card" role="listitem">
           <span class="badge">🖼️ Gigantografías</span>
           <h3 class="service-card-title">Lonas, front y backlight</h3>
-          <p class="service-card-subtitle">Imprimimos en gran formato con fidelidad cromática y resolución precisa,
-            utilizando perfiles ICC optimizados para nuestra tecnología de impresión. Ofrecemos opciones en lona
-            frontlight, backlight y mesh microperforado, adaptadas a cada necesidad publicitaria. Garantizamos colores
-            consistentes, materiales resistentes y acabados limpios que se mantienen perfectos incluso en exteriores de
-            alta exposición.</p>
+          <p class="service-card-subtitle">Impresión gran formato con perfiles ICC calibrados en lona frontlight, backlight y mesh microperforado.</p>
           <span class="service-card-action">Ver más</span>
         </a>
-        <a href="/servicios/laminado-uv.html" class="service-card" role="listitem">
+        <a href="servicios/laminado-uv.html" class="service-card" role="listitem">
           <span class="badge">✨ Laminado Líquido UV</span>
           <h3 class="service-card-title">Protección y acabado profesional</h3>
-          <p class="service-card-subtitle">Aplicamos laminado líquido con tecnología UV para extender la vida útil de
-            las impresiones y resaltar su brillo o acabado satinado. Este recubrimiento invisible actúa como barrera
-            contra los rayos UV, la humedad y la abrasión, manteniendo los colores vivos y protegidos. Ideal para
-            cartelería exterior, gráfica vehicular y trabajos que requieren máxima resistencia sin comprometer la
-            estética.</p>
+          <p class="service-card-subtitle">Recubrimiento UV brillante o satinado que protege impresiones y vehículos contra sol, humedad y roce.</p>
           <span class="service-card-action">Ver más</span>
         </a>
-        <a href="/servicios/carteleria-comercial.html" class="service-card" role="listitem">
+        <a href="servicios/carteleria-comercial.html" class="service-card" role="listitem">
           <span class="badge">🏪 Cartelería Comercial</span>
           <h3 class="service-card-title">Señalética, vidrieras y locales</h3>
-          <p class="service-card-subtitle">Diseñamos y producimos carteles, banners y señalética interior o exterior con
-            enfoque en visibilidad, durabilidad y estética. Ofrecemos soluciones integrales que van desde el diseño
-            hasta la instalación profesional, con materiales como vinilos poliméricos, microperforados y lonas tensadas.
-            Perfecto para negocios que buscan presencia visual sólida y una imagen moderna que refleje la identidad de
-            su marca.</p>
+          <p class="service-card-subtitle">Diseño, producción e instalación de carteles, vidrieras y señalética en vinilo, PVC y lona tensada.</p>
           <span class="service-card-action">Ver más</span>
         </a>
       </div>
@@ -1056,18 +1096,27 @@
 
     <!-- GALERÍA -->
     <section id="galeria" class="section container" aria-label="Galería de trabajos">
-      <h2 style="margin:0 0 1rem">Trabajos recientes</h2>
+      <h2 style="margin:0 0 .75rem">Trabajos recientes</h2>
+      <div class="gallery-filters" role="group" aria-label="Filtrar trabajos por categoría">
+        <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">Todos</button>
+        <button type="button" class="filter-btn" data-filter="carteleria" aria-pressed="false">Cartelería</button>
+        <button type="button" class="filter-btn" data-filter="gigantografias" aria-pressed="false">Gigantografías</button>
+        <button type="button" class="filter-btn" data-filter="laminado" aria-pressed="false">Laminado UV</button>
+        <button type="button" class="filter-btn" data-filter="vehicular" aria-pressed="false">Gráfica vehicular</button>
+      </div>
       <div class="gallery" role="list">
         <!-- Las imágenes se cargarán dinámicamente desde /assets/gallery/ -->
       </div>
       <div class="pagination">
-        <button id="prevPage">Anterior</button>
+        <button id="prevPage" type="button">Anterior</button>
         <span id="pageInfo"></span>
-        <button id="nextPage">Siguiente</button>
+        <button id="nextPage" type="button">Siguiente</button>
       </div>
       <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada de imagen">
-        <button class="close" aria-label="Cerrar"></button>
+        <button class="close" type="button" aria-label="Cerrar"></button>
+        <button class="nav-btn prev" type="button" aria-label="Imagen anterior">&#8249;</button>
         <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Imagen ampliada">
+        <button class="nav-btn next" type="button" aria-label="Imagen siguiente">&#8250;</button>
       </div>
     </section>
 
@@ -1145,31 +1194,70 @@
     })();
   </script>
   <script>
-    // Lightbox con delegación (funciona con ítems agregados dinámicamente)
+    // Lightbox con navegación y teclado (funciona con ítems filtrados dinámicamente)
     (function () {
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lightbox-img');
       const closeBtn = lb?.querySelector('.close');
+      const prevBtn = lb?.querySelector('.nav-btn.prev');
+      const nextBtn = lb?.querySelector('.nav-btn.next');
       const gallery = document.querySelector('.gallery');
+      let lastTrigger = null;
+      let currentLinks = [];
+      let currentIndex = -1;
+
+      function showAt(idx) {
+        if (!currentLinks.length || !lbImg) return;
+        currentIndex = (idx + currentLinks.length) % currentLinks.length;
+        const link = currentLinks[currentIndex];
+        const href = link.getAttribute('href');
+        const img = link.querySelector('img');
+        if (href) lbImg.src = href;
+        lbImg.alt = img?.alt || 'Imagen ampliada';
+      }
+
+      function closeLightbox() {
+        if (!lb || !lb.classList.contains('open')) return;
+        lb.classList.remove('open');
+        lastTrigger?.focus();
+      }
+
       if (gallery && lb && lbImg) {
         gallery.addEventListener('click', (e) => {
           const a = e.target.closest('a');
           if (!a || !gallery.contains(a)) return;
           e.preventDefault();
-          const href = a.getAttribute('href');
-          if (!href) return;
-          lbImg.src = href;
+          currentLinks = Array.from(gallery.querySelectorAll('a'));
+          const idx = currentLinks.indexOf(a);
+          if (idx === -1) return;
+          lastTrigger = a;
+          showAt(idx);
           lb.classList.add('open');
+          closeBtn?.focus();
         });
       }
-      closeBtn?.addEventListener('click', () => lb.classList.remove('open'));
-      lb?.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('open'); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('open'); });
+      prevBtn?.addEventListener('click', () => showAt(currentIndex - 1));
+      nextBtn?.addEventListener('click', () => showAt(currentIndex + 1));
+      closeBtn?.addEventListener('click', closeLightbox);
+      lb?.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', (e) => {
+        if (!lb?.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') showAt(currentIndex - 1);
+        else if (e.key === 'ArrowRight') showAt(currentIndex + 1);
+      });
     })();
   </script>
   <script>
-    // Galería con imágenes hardcodeadas y paginación
+    // Galería con filtros por categoría, alt descriptivos y paginación
     (function () {
+      const categoryLabels = {
+        carteleria: 'Cartelería comercial',
+        gigantografias: 'Gigantografías',
+        laminado: 'Laminado líquido UV',
+        vehicular: 'Gráfica vehicular'
+      };
+
       const imagePaths = [
         'assets/gallery/carteleria/39094009-9011-4c90-b505-c344aa85a9b7.jpeg',
         'assets/gallery/carteleria/a157b8f5-a0d7-4229-8f15-1a3834bc3cdc.jpeg',
@@ -1189,7 +1277,6 @@
         'assets/gallery/vehicular/e839611f-05a8-4bd1-9722-e85d58d0b2e9.jpeg'
       ];
 
-      // Función para mezclar (shuffle) el array aleatoriamente
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -1197,37 +1284,40 @@
         }
       }
 
-      // Mezclar las imágenes al cargar la página
       shuffleArray(imagePaths);
 
-      // Variables de paginación
+      let currentFilter = 'all';
       let currentPage = 1;
       const itemsPerPage = 8;
-      const totalPages = Math.ceil(imagePaths.length / itemsPerPage);
 
       const gallery = document.querySelector('.gallery');
       const prevButton = document.getElementById('prevPage');
       const nextButton = document.getElementById('nextPage');
       const pageInfo = document.getElementById('pageInfo');
+      const filterButtons = document.querySelectorAll('.filter-btn');
 
-      // Función para obtener imágenes paginadas
-      function getPaginatedImages() {
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        return imagePaths.slice(start, end);
+      function getFilteredImages() {
+        if (currentFilter === 'all') return imagePaths;
+        return imagePaths.filter((p) => p.includes(`/gallery/${currentFilter}/`));
       }
 
-      // Función para renderizar la galería
+      function getCategoryFromPath(imgPath) {
+        const match = imgPath.match(/assets\/gallery\/([^/]+)\//);
+        return match ? (categoryLabels[match[1]] || 'Trabajo') : 'Trabajo';
+      }
+
       function renderGallery(scroll = false) {
         if (!gallery) return;
 
-        // Limpiar galería
+        const filtered = getFilteredImages();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+        if (currentPage > totalPages) currentPage = totalPages;
+
         gallery.innerHTML = '';
 
-        // Obtener imágenes de la página actual
-        const paginatedImages = getPaginatedImages();
+        const start = (currentPage - 1) * itemsPerPage;
+        const paginatedImages = filtered.slice(start, start + itemsPerPage);
 
-        // Crear elementos
         paginatedImages.forEach((imgPath) => {
           const a = document.createElement('a');
           a.href = imgPath;
@@ -1235,57 +1325,56 @@
 
           const img = document.createElement('img');
           img.src = imgPath;
-          img.alt = "Trabajo XignuX";
+          img.alt = `${getCategoryFromPath(imgPath)} — Trabajo XignuX`;
           img.loading = 'lazy';
 
           a.appendChild(img);
           gallery.appendChild(a);
         });
 
-        // Actualizar información de página
         if (pageInfo) {
           pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
         }
-
-        // Habilitar/deshabilitar botones
         if (prevButton) {
           prevButton.disabled = currentPage === 1;
         }
         if (nextButton) {
-          nextButton.disabled = currentPage === totalPages;
+          nextButton.disabled = currentPage >= totalPages;
         }
 
-        // Scroll suave hacia la galería (solo si se solicita)
         const galeriaSection = document.querySelector('#galeria');
         if (scroll && galeriaSection) {
           galeriaSection.scrollIntoView();
         }
       }
 
-      // Funciones para cambiar de página
-      function nextPage() {
-        if (currentPage < totalPages) {
-          currentPage++;
-          renderGallery(true);
-        }
-      }
+      filterButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentFilter = btn.dataset.filter || 'all';
+          currentPage = 1;
+          filterButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          renderGallery(false);
+        });
+      });
 
-      function prevPage() {
-        if (currentPage > 1) {
-          currentPage--;
-          renderGallery(true);
-        }
-      }
-
-      // Inicializar eventos
       if (prevButton) {
-        prevButton.addEventListener('click', prevPage);
+        prevButton.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderGallery(true);
+          }
+        });
       }
       if (nextButton) {
-        nextButton.addEventListener('click', nextPage);
+        nextButton.addEventListener('click', () => {
+          const totalPages = Math.max(1, Math.ceil(getFilteredImages().length / itemsPerPage));
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderGallery(true);
+          }
+        });
       }
 
-      // Renderizar galería inicial
       renderGallery();
     })();
 

@@ -180,15 +180,15 @@
 
         .header-nav a:hover {
             opacity: 1;
-            color: #0078ff;
+            color: #0056b3;
             transform: translateY(-1px);
         }
 
         .header-btn {
             padding: 10px 22px;
             border-radius: 10px;
-            border: 1.6px solid #0078ff;
-            color: #0078ff !important;
+            border: 1.6px solid #0056b3;
+            color: #0056b3 !important;
             font-weight: 800;
             font-family: inherit;
             font-size: 18px;
@@ -196,19 +196,18 @@
         }
 
         .header-btn:hover {
-            background: #0078ff;
+            background: #0056b3;
             color: white !important;
-            box-shadow: 0px 4px 14px rgba(0, 120, 255, 0.35);
+            box-shadow: 0 4px 14px rgba(11, 18, 32, 0.18);
         }
 
         .header-glow-line {
             width: 100%;
-            height: 2px;
+            height: 1px;
             background: linear-gradient(90deg,
-                    rgba(0, 120, 255, 0) 0%,
-                    rgba(0, 120, 255, 0.65) 50%,
-                    rgba(0, 120, 255, 0) 100%);
-            box-shadow: 0px 0px 12px rgba(0, 120, 255, 0.4);
+                    rgba(0, 86, 179, 0) 0%,
+                    rgba(0, 86, 179, 0.35) 50%,
+                    rgba(0, 86, 179, 0) 100%);
         }
 
         /* Header Responsive Adjustments */
@@ -253,7 +252,8 @@
         }
 
         /* Botones */
-        .btn-cmyk {
+        .btn-cmyk,
+        .btn-ghost {
             position: relative;
             display: inline-flex;
             align-items: center;
@@ -262,9 +262,6 @@
             border-radius: 999px;
             font-weight: 700;
             letter-spacing: .2px;
-            background: linear-gradient(135deg, var(--c) 0%, var(--m) 100%);
-            color: #ffffff;
-            box-shadow: 0 10px 30px -12px rgba(0, 181, 226, 0.4), 0 0 0 1px rgba(0, 181, 226, 0.2);
             transition: transform .15s ease, box-shadow .2s ease, filter .15s ease;
             isolation: isolate;
             font-size: clamp(0.85rem, 2.5vw, 1rem);
@@ -272,23 +269,30 @@
             border: none;
         }
 
+        .btn-cmyk {
+            background: linear-gradient(135deg, #006d99 0%, #b30059 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 24px -10px rgba(11, 18, 32, 0.25);
+        }
+
         .btn-cmyk:hover {
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 16px 40px -12px rgba(0, 181, 226, 0.6), 0 0 0 1px rgba(0, 181, 226, 0.3);
-            filter: brightness(1.1);
+            box-shadow: 0 14px 32px -10px rgba(11, 18, 32, 0.32);
+            filter: brightness(1.08);
         }
 
         .btn-ghost {
             background: transparent;
             color: var(--text);
-            box-shadow: 0 10px 30px -12px var(--ring), 0 0 0 2px color-mix(in srgb, var(--c), transparent 40%);
-            border: 2px solid var(--c);
+            box-shadow: 0 8px 20px -12px rgba(11, 18, 32, 0.18);
+            border: 2px solid #006d99;
         }
 
         .btn-ghost:hover {
-            background: color-mix(in srgb, var(--c), transparent 90%);
-            border-color: var(--c);
-            box-shadow: 0 16px 40px -12px rgba(0, 181, 226, 0.4);
+            transform: translateY(-2px) scale(1.02);
+            background: rgba(0, 109, 153, 0.08);
+            border-color: #006d99;
+            box-shadow: 0 12px 24px -12px rgba(11, 18, 32, 0.24);
         }
 
         /* ========================
@@ -462,14 +466,14 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: #25D366;
+            background-color: #15803d;
             border-radius: 50%;
             width: 64px;
             height: 64px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 8px 40px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 20px rgba(11, 18, 32, 0.25);
             z-index: 999;
             transition: all .3s ease;
             cursor: pointer;
@@ -478,7 +482,7 @@
 
         .whatsapp-float:hover {
             transform: scale(1.1) translateY(-3px);
-            box-shadow: 6px 30px rgba(37, 211, 102, 0.5), 0 12px 50px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 10px 28px rgba(11, 18, 32, 0.32);
         }
 
         .whatsapp-float svg {
@@ -488,14 +492,21 @@
         }
 
         @keyframes pulse-whatsapp {
-
             0%,
             100% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 8px 40px rgba(37, 211, 102, 0.3);
+                box-shadow: 0 6px 20px rgba(11, 18, 32, 0.25);
             }
-
             50% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 8px 40px rgba(37, 211, 102, 0.5), 0 0 0 8px rgba(37, 211, 102, 0.1);
+                box-shadow: 0 10px 26px rgba(11, 18, 32, 0.34);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body, .header-tech, .whatsapp-float {
+                animation: none;
+            }
+            * {
+                scroll-behavior: auto;
             }
         }
     </style>
@@ -532,7 +543,6 @@
         <!-- HERO DE SERVICIO -->
         <section class="container hero">
             <div class="hero-content">
-                <span class="eyebrow">🏢 Cartelería Comercial</span>
                 <h1 class="title">Identidad Visual para tu Negocio</h1>
                 <p class="subtitle">Soluciones integrales en cartelería, señalética y corpóreos para destacar su marca.
                 </p>
@@ -562,7 +572,7 @@
             </div>
             <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada de imagen">
                 <button class="close" aria-label="Cerrar"></button>
-                <img id="lightbox-img" alt="Imagen ampliada">
+                <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Imagen ampliada">
             </div>
         </section>
 
